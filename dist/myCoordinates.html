@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Koordinat Ekle</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href=".//vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href=".//vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href=".//vendors/select2/select2.min.css">
+    <link rel="stylesheet" href=".//vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href=".//css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href=".//images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+                <a class="sidebar-brand brand-logo" href="../../index.html"><img src=".//images/logo.svg" alt="logo" /></a>
+                <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src=".//images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            <ul class="nav">
+                <li class="nav-item nav-category">
+                    <span class="nav-link">Navigation</span>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="dashboard.html">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-speedometer"></i>
+                        </span>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="myCoordinates.html">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-speedometer"></i>
+                        </span>
+                        <span class="menu-title">Koordinatlarım</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="apiTest.html">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-speedometer"></i>
+                        </span>
+                        <span class="menu-title">API Test</span>
+                    </a>
+                </li>
+            
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_navbar.html -->
+            <nav class="navbar p-0 fixed-top d-flex flex-row">
+                <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+                    <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src=".//images/logo-mini.svg" alt="logo" /></a>
+                </div>
+                <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+
+
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                        <span class="mdi mdi-format-line-spacing"></span>
+                    </button>
+                </div>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h3 class="page-title"> Koordinatlarım </h3>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <blockquote class="blockquote blockquote-success result" style="display: none;">
+
+                                    </blockquote>
+                                    <form class="forms-sample" id="locationForm">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputUsername1">Lokasyon</label>
+                                                    <input type="text" class="form-control" id="location" placeholder="Lokasyon">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputUsername1">Enlem</label>
+                                                    <input type="text" class="form-control" id="latitude" placeholder="Latitude">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputUsername1">Boylam</label>
+                                                    <input type="text" class="form-control" id="longitude" placeholder="Longitude">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="d-flex justify-content-between">
+                                                    <button type="submit" class="btn btn-primary mr-2">Ekle</button>
+                                                    <button type="button" class="btn btn-success mr-2" id="currentLocation">Bulunduğum Lokasyonu Bul</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Tüm Koordinatlar</h4>
+                                    <table class="table table-hover" id="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Lokasyon</th>
+                                                <th>Enlem</th>
+                                                <th>Boylam</th>
+                                                <th>İşlem</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Jacob</td>
+                                                <td>000000</td>
+                                                <td> 000000</td>
+                                                <td><label class="badge badge-danger">Sil</label></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src=".//vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src=".//vendors/select2/select2.min.js"></script>
+    <script src=".//vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src=".//js/off-canvas.js"></script>
+    <script src=".//js/hoverable-collapse.js"></script>
+    <script src=".//js/misc.js"></script>
+    <script src=".//js/settings.js"></script>
+    <script src=".//js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src=".//js/file-upload.js"></script>
+    <script src=".//js/typeahead.js"></script>
+    <script src=".//js/select2.js"></script>
+    <script src="./mycoordinates.bundle.js"></script>
+    <!-- End custom js for this page -->
+</body>
+
+</html>
